@@ -36,5 +36,8 @@ class HaodouSpider(scrapy.Spider):
         author_img = response.xpath("//div[@class='author']/a/img/@src").extract()[0]
         one_message=response.xpath("//div[@class='desc mt30']/text()").extract()[0]
         tools_message=response.xpath("//div[@class='ings']/text()").extract()[0]
+        message = response.xpath("//div[@class='steps']/text()").extract()[0]
+        tip = response.xpath("//div[@class='tip']/text()").extract()[0]
+        video_url=response.xpath("//iframe/@src").extract()[0]
         print(title)
         pass

@@ -108,7 +108,7 @@ USER_AGENTS = [
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'kitchen.middlewares.KitchenDownloaderMiddleware': 543,
-    'kitchen.MyUserAgentMiddleware.MyUserAgentMiddleware' : 400,
+    'kitchen.MyUserAgentMiddleware.MyUserAgentMiddleware': 400,
 }
 
 # Enable or disable extensions
@@ -119,9 +119,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'kitchen.pipelines.KitchenPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'kitchen.pipelines.KitchenPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -144,3 +144,9 @@ HTTPERROR_ALLOWED_CODES = [403]
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# MySQL params
+MYSQL_HOST = "localhost"
+#MYSQL_DBNAME = "long"
+MYSQL_DBNAME = "kitchen"
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "123longhe"
