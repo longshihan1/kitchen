@@ -4,6 +4,8 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+import MySQLdb
+from twisted.enterprise import adbapi
 
 
 class KitchenPipeline(object):
@@ -48,17 +50,11 @@ class KitchenPipeline(object):
         """
         执行具体的操作，能够自动 commit
         """
-        image_download = json.dumps(item["front_img_url_download"])
-        print(image_download)
         insert_sql = """
-                    insert into bole_article(title, create_date, url, url_object_id, front_img_url, front_img_path, comment_nums, 
-                    fav_nums, vote_nums, tags, content) VALUES ('%s', '%s', '%s', '%s', '%s', '%s','%s', '%s','%s', '%s', '%s');
-                """ % (item["title"], item["create_date"], item["url"], item["object_id"], image_download,
-                       item["front_img_path"], item["comment_nums"], item["fav_nums"], item["vote_nums"], item["tags"],
-                       item["content"])
-
-        #cursor.execute(insert_sql, (item["title"], item["create_date"], item["url"], item["object_id"], image_download,
-        #               item["front_img_path"], item["comment_nums"], item["fav_nums"], item["vote_nums"], item["tags"],
-         #              item["content"]))
+                    insert into kitchen(title, create_date, topimg, url, object_id, score, cookcount, 
+                    author, author_img, desmessage, imgsmessage,stepsmessage,tip,videourl) 
+                    VALUES ('%s', '%s', '%s', '%s', '%s', '%s','%s', '%s','%s', '%s', '%s','%s', '%s', '%s');
+                """ % (item["title"], item["create_date"], item["topimg"], item["url"], item["object_id"],item["score"], item["cookcount"],
+                       item["author"], item["author_img"], item["desmessage"],item["imgsmessage"],item["stepsmessage"],item["tip"],item["videourl"])
         print(insert_sql)
         cursor.execute(insert_sql)
