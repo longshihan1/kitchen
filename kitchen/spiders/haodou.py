@@ -42,7 +42,7 @@ class HaodouSpider(scrapy.Spider):
         tools_message = response.xpath("//div[@class='ings']/text()").extract()[0]
         message = response.xpath("//div[@class='steps']/text()").extract()[0]
         tip = response.xpath("//div[@class='tip']/text()").extract()[0]
-        video_url = response.xpath("//iframe/@src").extract()[0]
+        # video_url = response.xpath("//iframe/@src").extract()[0]
         print(title)
         url = response.meta.get("url", "")
         item["title"] = title
@@ -58,5 +58,5 @@ class HaodouSpider(scrapy.Spider):
         item["imgsmessage"] = tools_message
         item["stepsmessage"] = message
         item["tip"] = tip
-        item["videourl"] = video_url
+        # item["videourl"] = video_url
         yield item
